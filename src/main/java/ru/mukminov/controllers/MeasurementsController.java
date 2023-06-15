@@ -17,6 +17,7 @@ import ru.mukminov.util.ErrorResponse;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/measurements")
@@ -35,6 +36,10 @@ public class MeasurementsController {
         return modelMapper.map(measurementDTO, Measurement.class);
     }
 
+    private MeasurementDTO convertToMeasurementDTO(Measurement measurement) {
+        return modelMapper.map(measurement, MeasurementDTO.class);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<HttpStatus> add(@RequestBody @Valid MeasurementDTO measurementDTO,
                                           BindingResult bindingResult) {
@@ -50,7 +55,7 @@ public class MeasurementsController {
             throw new MeasurementNotAddedException(errorMsg.toString());
         }
 
-        Optional<Sensor> sensorOptional = sensorsService.findSensor(measurementDTO.getSensorDTO().getName());
+        Optional<Sensor> sensorOptional = sensorsService.findSensor(measurementDTO.getSensorName());
 
         if (sensorOptional.isEmpty()) {
             throw new MeasurementNotAddedException("Sensor is not registered!");
@@ -69,5 +74,12 @@ public class MeasurementsController {
                 System.currentTimeMillis()
         );
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping()
+    public List<MeasurementDTO> getMeasurements() {
+        return measurementsService.findAll()
+                .stream().map(this::convertToMeasurementDTO)
+                .collect(Collectors.toList());
     }
 }

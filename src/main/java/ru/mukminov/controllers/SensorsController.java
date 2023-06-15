@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.mukminov.dto.SensorDTO;
-import ru.mukminov.models.Sensor;
 import ru.mukminov.services.SensorsService;
 import ru.mukminov.util.ErrorResponse;
 import ru.mukminov.util.SensorNotCreatedException;
@@ -27,11 +26,11 @@ public class SensorsController {
         this.modelMapper = modelMapper;
     }
 
-    private Sensor convertToSensor(SensorDTO sensorDTO) {
-        return modelMapper.map(sensorDTO, Sensor.class);
+    private ru.mukminov.models.Sensor convertToSensor(SensorDTO sensorDTO) {
+        return modelMapper.map(sensorDTO, ru.mukminov.models.Sensor.class);
     }
 
-    private SensorDTO convertToSensorDTO(Sensor sensor) {
+    private SensorDTO convertToSensorDTO(ru.mukminov.models.Sensor sensor) {
         return modelMapper.map(sensor, SensorDTO.class);
     }
 

@@ -14,7 +14,7 @@ public class MeasurementDTO {
     @NotNull(message = "Field 'raining' should not be empty")
     private boolean raining;
 
-    private SensorDTO sensorDTO;
+    private String sensorName;
 
     public BigDecimal getValue() {
         return value;
@@ -32,11 +32,11 @@ public class MeasurementDTO {
         this.raining = raining;
     }
 
-    public SensorDTO getSensorDTO() {
-        return sensorDTO;
+    public String getSensorName() {
+        return sensorName;
     }
 
-    public void setSensorDTO(SensorDTO sensorDTO) {
-        this.sensorDTO = sensorDTO;
+    public void setSensorName(String sensorName) {
+        this.sensorName = sensorName;
     }
 }
