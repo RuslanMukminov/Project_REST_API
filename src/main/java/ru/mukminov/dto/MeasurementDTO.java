@@ -1,24 +1,26 @@
 package ru.mukminov.dto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 public class MeasurementDTO {
-    @NotEmpty(message = "Value should not be empty")
-    @Size(min = -100, max = 100, message = "Value should be between -100 and 100")
-    private double value;
+    @NotNull(message = "Value should not be empty")
+    @DecimalMin(value = "-100.0", message = "Value should be between -100 and 100")
+    @DecimalMax(value = "100.0", message = "Value should be between -100 and 100")
+    private BigDecimal value;
 
-    @NotEmpty(message = "Field 'raining' should not be empty")
+    @NotNull(message = "Field 'raining' should not be empty")
     private boolean raining;
 
-    @NotEmpty(message = "Sensor name should not be empty")
-    private String sensorName;
+    private SensorDTO sensorDTO;
 
-    public double getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 
@@ -30,11 +32,11 @@ public class MeasurementDTO {
         this.raining = raining;
     }
 
-    public String getSensorName() {
-        return sensorName;
+    public SensorDTO getSensorDTO() {
+        return sensorDTO;
     }
 
-    public void setSensorName(String sensorName) {
-        this.sensorName = sensorName;
+    public void setSensorDTO(SensorDTO sensorDTO) {
+        this.sensorDTO = sensorDTO;
     }
 }

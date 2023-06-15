@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.mukminov.dto.SensorDTO;
 import ru.mukminov.models.Sensor;
 import ru.mukminov.services.SensorsService;
-import ru.mukminov.util.SensorErrorResponse;
+import ru.mukminov.util.ErrorResponse;
 import ru.mukminov.util.SensorNotCreatedException;
 
 import javax.validation.Valid;
@@ -60,8 +60,8 @@ public class SensorsController {
     }
 
     @ExceptionHandler
-    private ResponseEntity<SensorErrorResponse> handleException(SensorNotCreatedException e) {
-        SensorErrorResponse response = new SensorErrorResponse(
+    private ResponseEntity<ErrorResponse> handleException(SensorNotCreatedException e) {
+        ErrorResponse response = new ErrorResponse(
                 e.getMessage(),
                 System.currentTimeMillis()
         );

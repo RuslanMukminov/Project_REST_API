@@ -1,8 +1,8 @@
 package ru.mukminov.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,12 +15,12 @@ public class Measurement {
     private int id;
 
     @Column(name = "value")
-    @NotEmpty(message = "Value should not be empty")
-    @Size(min = -100, max = 100, message = "Value should be between -100 and 100")
-    private double value;
+    @NotNull(message = "Value should not be empty")
+    @DecimalMin(value = "-100.0", message = "Value should be between -100 and 100")
+    @DecimalMax(value = "100.0", message = "Value should be between -100 and 100")
+    private BigDecimal value;
 
     @Column(name = "raining")
-    @NotEmpty(message = "Field 'raining' should not be empty")
     private boolean raining;
 
     @Column(name = "sensor_name")
@@ -34,4 +34,60 @@ public class Measurement {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    public Measurement() {
+    }
+
+    public Measurement(BigDecimal value, boolean raining, String sensorName) {
+        this.value = value;
+        this.raining = raining;
+        this.sensorName = sensorName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
+    public boolean isRaining() {
+        return raining;
+    }
+
+    public void setRaining(boolean raining) {
+        this.raining = raining;
+    }
+
+    public String getSensorName() {
+        return sensorName;
+    }
+
+    public void setSensorName(String sensorName) {
+        this.sensorName = sensorName;
+    }
+
+    public Sensor getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Sensor owner) {
+        this.owner = owner;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
