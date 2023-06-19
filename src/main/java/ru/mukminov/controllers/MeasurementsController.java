@@ -55,7 +55,7 @@ public class MeasurementsController {
             throw new MeasurementNotAddedException(errorMsg.toString());
         }
 
-        Optional<Sensor> sensorOptional = sensorsService.findSensor(measurementDTO.getSensorName());
+        Optional<Sensor> sensorOptional = sensorsService.findSensor(measurementDTO.getSensor().getName());
 
         if (sensorOptional.isEmpty()) {
             throw new MeasurementNotAddedException("Sensor is not registered!");
