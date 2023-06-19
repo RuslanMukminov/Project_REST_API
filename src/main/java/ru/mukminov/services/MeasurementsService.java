@@ -1,7 +1,6 @@
 package ru.mukminov.services;
 
 import org.springframework.stereotype.Service;
-import ru.mukminov.dto.MeasurementDTO;
 import ru.mukminov.models.Measurement;
 import ru.mukminov.models.Sensor;
 import ru.mukminov.repositories.MeasurementsRepository;
@@ -29,5 +28,10 @@ public class MeasurementsService {
 
     public List<Measurement> findAll() {
         return measurementsRepository.findAll();
+    }
+
+    public int getRainyDaysCount() {
+        List<Measurement> rainyDaysCount = measurementsRepository.findByRainingTrue();
+        return rainyDaysCount.size();
     }
 }

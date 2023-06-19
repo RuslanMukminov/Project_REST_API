@@ -82,4 +82,9 @@ public class MeasurementsController {
                 .stream().map(this::convertToMeasurementDTO)
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/rainyDaysCount")
+    public int getRainyDaysCount() {
+        return measurementsService.getRainyDaysCount();
+    }
 }
