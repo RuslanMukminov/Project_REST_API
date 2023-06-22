@@ -1,7 +1,5 @@
 package ru.mukminov.dto;
 
-import ru.mukminov.models.Sensor;
-
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -16,7 +14,7 @@ public class MeasurementDTO {
     @NotNull(message = "Field 'raining' should not be empty")
     private boolean raining;
 
-    private Sensor sensor;
+    private SensorDTO sensor;
 
     public BigDecimal getValue() {
         return value;
@@ -34,11 +32,11 @@ public class MeasurementDTO {
         this.raining = raining;
     }
 
-    public Sensor getSensor() {
+    public SensorDTO getSensor() {
         return sensor;
     }
 
-    public void setSensor(Sensor sensor) {
+    public void setSensor(SensorDTO sensor) {
         this.sensor = sensor;
     }
 }
