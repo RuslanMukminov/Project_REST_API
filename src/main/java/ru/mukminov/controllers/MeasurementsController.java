@@ -26,7 +26,9 @@ public class MeasurementsController {
     private final ModelMapper modelMapper;
     private final SensorsService sensorsService;
 
-    public MeasurementsController(MeasurementsService measurementsService, ModelMapper modelMapper, SensorsService sensorsService) {
+    public MeasurementsController(MeasurementsService measurementsService,
+                                  ModelMapper modelMapper,
+                                  SensorsService sensorsService) {
         this.measurementsService = measurementsService;
         this.modelMapper = modelMapper;
         this.sensorsService = sensorsService;

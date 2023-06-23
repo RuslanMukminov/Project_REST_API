@@ -1,34 +1,34 @@
 package ru.mukminov.dto;
 
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
 public class MeasurementDTO {
     @NotNull(message = "Value should not be empty")
-    @DecimalMin(value = "-100.0", message = "Value should be between -100 and 100")
-    @DecimalMax(value = "100.0", message = "Value should be between -100 and 100")
-    private BigDecimal value;
+    @Min(-100)
+    @Max(100)
+    private Double value;
 
     @NotNull(message = "Field 'raining' should not be empty")
-    private boolean raining;
+    private Boolean raining;
 
+    @NotNull
     private SensorDTO sensor;
 
-    public BigDecimal getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(BigDecimal value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
-    public boolean isRaining() {
+    public Boolean isRaining() {
         return raining;
     }
 
-    public void setRaining(boolean raining) {
+    public void setRaining(Boolean raining) {
         this.raining = raining;
     }
 

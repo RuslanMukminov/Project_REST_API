@@ -1,8 +1,10 @@
 package ru.mukminov.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.math.BigDecimal;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,13 +17,14 @@ public class Measurement {
     private int id;
 
     @Column(name = "value")
-    @NotNull(message = "Value should not be empty")
-    @DecimalMin(value = "-100.0", message = "Value should be between -100 and 100")
-    @DecimalMax(value = "100.0", message = "Value should be between -100 and 100")
-    private BigDecimal value;
+    @NotNull
+    @Min(-100)
+    @Max(100)
+    private Double value;
 
     @Column(name = "raining")
-    private boolean raining;
+    @NotNull
+    private Boolean raining;
 
     @Column(name = "sensor_name")
     @NotEmpty(message = "Sensor name should not be empty")
@@ -37,7 +40,7 @@ public class Measurement {
     public Measurement() {
     }
 
-    public Measurement(BigDecimal value, boolean raining, String sensorName) {
+    public Measurement(Double value, Boolean raining, String sensorName) {
         this.value = value;
         this.raining = raining;
         this.sensorName = sensorName;
@@ -51,19 +54,19 @@ public class Measurement {
         this.id = id;
     }
 
-    public BigDecimal getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(BigDecimal value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
-    public boolean isRaining() {
+    public Boolean isRaining() {
         return raining;
     }
 
-    public void setRaining(boolean raining) {
+    public void setRaining(Boolean raining) {
         this.raining = raining;
     }
 
