@@ -11,6 +11,7 @@ import ru.mukminov.models.Measurement;
 import ru.mukminov.models.Sensor;
 import ru.mukminov.services.MeasurementsService;
 import ru.mukminov.services.SensorsService;
+import ru.mukminov.util.ErrorsMsgUtil;
 import ru.mukminov.util.MeasurementNotAddedException;
 import ru.mukminov.util.ErrorResponse;
 
@@ -46,15 +47,7 @@ public class MeasurementsController {
     public ResponseEntity<HttpStatus> add(@RequestBody @Valid MeasurementDTO measurementDTO,
                                           BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            StringBuilder errorMsg = new StringBuilder();
-
-            List<FieldError> errors = bindingResult.getFieldErrors();
-            for (FieldError error : errors) {
-                errorMsg.append(error.getField())
-                        .append(" - ").append(error.getDefaultMessage())
-                        .append(";");
-            }
-            throw new MeasurementNotAddedException(errorMsg.toString());
+            throw new MeasurementNotAddedException(ErrorsMsgUtil.getErrorsMsg(bindingResult));
         }
 
         Optional<Sensor> sensorOptional = sensorsService.findSensor(measurementDTO.getSensor().getName());

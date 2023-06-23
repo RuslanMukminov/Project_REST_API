@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.mukminov.dto.SensorDTO;
 import ru.mukminov.services.SensorsService;
 import ru.mukminov.util.ErrorResponse;
+import ru.mukminov.util.ErrorsMsgUtil;
 import ru.mukminov.util.SensorNotCreatedException;
 
 import javax.validation.Valid;
@@ -38,15 +39,7 @@ public class SensorsController {
     public ResponseEntity<HttpStatus> registration(@RequestBody @Valid SensorDTO sensorDTO,
                                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            StringBuilder errorMsg = new StringBuilder();
-
-            List<FieldError> errors = bindingResult.getFieldErrors();
-            for (FieldError error : errors) {
-                errorMsg.append(error.getField())
-                        .append(" - ").append(error.getDefaultMessage())
-                        .append(";");
-            }
-            throw new SensorNotCreatedException(errorMsg.toString());
+            throw new SensorNotCreatedException(ErrorsMsgUtil.getErrorsMsg(bindingResult));
         }
 
         if (sensorsService.findSensor(sensorDTO.getName()).isPresent()) {
