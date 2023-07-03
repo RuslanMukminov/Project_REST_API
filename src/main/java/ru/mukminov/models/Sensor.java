@@ -22,15 +22,15 @@ public class Sensor {
     @Column(name = "created_at")
     private LocalDateTime createdAT;
 
-    @OneToMany(mappedBy = "owner")
-    private List<Measurement> measurements;
+//    @OneToMany(mappedBy = "owner")
+//    private List<Measurement> measurements;
 
-    public Sensor() {
-    }
+//    public Sensor() {
+//    }
 
-    public Sensor(String name) {
-        this.name = name;
-    }
+//    public Sensor(String name) {
+//        this.name = name;
+//    }
 
     public int getId() {
         return id;
