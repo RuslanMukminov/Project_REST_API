@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.mukminov.dto.SensorDTO;
 import ru.mukminov.models.Sensor;
@@ -14,7 +13,6 @@ import ru.mukminov.util.ErrorsMsgUtil;
 import ru.mukminov.util.SensorNotCreatedException;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/sensors")
@@ -31,10 +29,6 @@ public class SensorsController {
     private Sensor convertToSensor(SensorDTO sensorDTO) {
         return modelMapper.map(sensorDTO, Sensor.class);
     }
-
-//    private SensorDTO convertToSensorDTO(ru.mukminov.models.Sensor sensor) {
-//        return modelMapper.map(sensor, SensorDTO.class);
-//    }
 
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> registration(@RequestBody @Valid SensorDTO sensorDTO,

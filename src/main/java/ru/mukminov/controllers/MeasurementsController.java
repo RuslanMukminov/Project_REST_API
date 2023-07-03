@@ -4,16 +4,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.mukminov.dto.MeasurementDTO;
 import ru.mukminov.models.Measurement;
 import ru.mukminov.models.Sensor;
 import ru.mukminov.services.MeasurementsService;
 import ru.mukminov.services.SensorsService;
+import ru.mukminov.util.ErrorResponse;
 import ru.mukminov.util.ErrorsMsgUtil;
 import ru.mukminov.util.MeasurementNotAddedException;
-import ru.mukminov.util.ErrorResponse;
 
 import javax.validation.Valid;
 import java.util.List;

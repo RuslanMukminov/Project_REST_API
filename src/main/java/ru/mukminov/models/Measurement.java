@@ -26,9 +26,9 @@ public class Measurement {
     @NotNull
     private Boolean raining;
 
-//    @Column(name = "sensor_name")
-//    @NotEmpty(message = "Sensor name should not be empty")
-//    private String sensorName;
+    @Column(name = "sensor_name")
+    @NotEmpty(message = "Sensor name should not be empty")
+    private String sensorName;
 
     @ManyToOne
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
@@ -38,15 +38,6 @@ public class Measurement {
     @Column(name = "created_at")
     @NotNull
     private LocalDateTime createdAt;
-
-//    public Measurement() {
-//    }
-//
-//    public Measurement(Double value, Boolean raining, String sensorName) {
-//        this.value = value;
-//        this.raining = raining;
-//        this.sensorName = sensorName;
-//    }
 
     public int getId() {
         return id;
@@ -72,13 +63,13 @@ public class Measurement {
         this.raining = raining;
     }
 
-//    public String getSensorName() {
-//        return sensorName;
-//    }
+    public String getSensorName() {
+        return sensorName;
+    }
 
-//    public void setSensorName(String sensorName) {
-//        this.sensorName = sensorName;
-//    }
+    public void setSensorName(String sensorName) {
+        this.sensorName = sensorName;
+    }
 
     public Sensor getOwner() {
         return owner;
